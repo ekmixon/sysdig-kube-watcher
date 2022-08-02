@@ -19,14 +19,14 @@ log("Kubewatcher Starting")
 DEFAULT_SDC_URL = 'https://app.sysdigcloud.com'
 SDC_URL = os.getenv('SDC_URL')
 if not SDC_URL:
-    log('No SDC_URL specified. Defaulting to ' + DEFAULT_SDC_URL + '.', 'info')
+    log(f'No SDC_URL specified. Defaulting to {DEFAULT_SDC_URL}.', 'info')
     os.environ['SDC_URL'] = DEFAULT_SDC_URL
 
 SDC_ADMIN_TOKEN = os.getenv('SDC_ADMIN_TOKEN')
 if not SDC_ADMIN_TOKEN:
     log('Did not find API Token for an Admin user at env variable "SDC_ADMIN_TOKEN". Exiting.', 'error')
     sys.exit(1)
-    
+
 DEFAULT_TEAM_PREFIX = ''
 team_prefix = os.getenv('TEAM_PREFIX', DEFAULT_TEAM_PREFIX)
 
@@ -37,7 +37,7 @@ if not KUBE_URL:
 #
 # Instantiate the customer admin SDC client
 #
-log('SDC_URL = ' + SDC_URL, 'info')
+log(f'SDC_URL = {SDC_URL}', 'info')
 ca_sdclient = SdcClient(SDC_ADMIN_TOKEN, SDC_URL)
 
 res = ca_sdclient.get_user_info()
